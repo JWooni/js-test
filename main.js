@@ -603,7 +603,65 @@
 // console.log(toOject(...fruits))
 
 
-// 데이터 불변성
+// 데이터 불변성(Immutability)
+// 원시 데이터: String, Number, Boolean, undefined, null
+// 참조형 데이터: Object, Array, Function
+// -------------------------------------------------------------
+// |1.:       |2.:      |3.:      |4.:
+// -------------------------------------------------------------
 
+// 원시 데이터
+// let a = 1
+// let b = 4
+// console.log(a, b, a === b)
+// b = a
+// console.log(a, b, a === b)
+// a = 7
+// console.log(a, b, a === b)
+// let c = 1
+// console.log(b, c, b === c)
 
+// 참조형 데이터
+// let a = {k:1}
+// let b = {k:1}
+// console.log(a, b, a === b)
+// a.k = 7
+// b = a
+// console.log(a, b, a === b)
+// a.k = 2
+// console.log(a, b, a === b)
+// let c = b
+// console.log(a, b, c, a === c)
+// a.k = 9
+// console.log(a, b, c, a === c)
+
+import _ from 'lodash'
+// 얕은 복사(Shallow copy), 깊은 복사(Deep copy)
+const user = {
+  name: 'JWooni',
+  age: 85,
+  emails: ['abcd@gmail.com']
+}
+
+//  const copyUser = user
+//  console.log(copyUser === user)
+
+//  user.age = 22
+//  console.log('user', user)
+//  console.log('coypUser', copyUser)
+
+console.log('---------------')
+console.log('---------------')
+
+const copyUser = _.cloneDeep(user)
+console.log(copyUser === user)
+
+user.age = 22
+console.log('user', user)
+console.log('coypUser', copyUser)
+
+user.emails.push('adfasd@gdfd.com')
+console.log(user.emails === copyUser.emails)
+console.log('user', user)
+console.log('copyUser', copyUser)
 

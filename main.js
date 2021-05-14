@@ -635,13 +635,13 @@
 // a.k = 9
 // console.log(a, b, c, a === c)
 
-import _ from 'lodash'
+// import _ from 'lodash'
 // 얕은 복사(Shallow copy), 깊은 복사(Deep copy)
-const user = {
-  name: 'JWooni',
-  age: 85,
-  emails: ['abcd@gmail.com']
-}
+// const user = {
+//   name: 'JWooni',
+//   age: 85,
+//   emails: ['abcd@gmail.com']
+// }
 
 //  const copyUser = user
 //  console.log(copyUser === user)
@@ -650,18 +650,69 @@ const user = {
 //  console.log('user', user)
 //  console.log('coypUser', copyUser)
 
-console.log('---------------')
-console.log('---------------')
+// console.log('---------------')
+// console.log('---------------')
 
-const copyUser = _.cloneDeep(user)
-console.log(copyUser === user)
+// const copyUser = _.cloneDeep(user)
+// console.log(copyUser === user)
 
-user.age = 22
-console.log('user', user)
-console.log('coypUser', copyUser)
+// user.age = 22
+// console.log('user', user)
+// console.log('coypUser', copyUser)
 
-user.emails.push('adfasd@gdfd.com')
-console.log(user.emails === copyUser.emails)
-console.log('user', user)
-console.log('copyUser', copyUser)
+// user.emails.push('adfasd@gdfd.com')
+// console.log(user.emails === copyUser.emails)
+// console.log('user', user)
+// console.log('copyUser', copyUser)
 
+
+////////////////////////////////////////////////////////////////////
+
+
+// 가져오기, 내보내기
+// import _ from 'lodash' // From `node_modules`!
+// import checkType from './getType' // getType.js
+// //import {random, user} from './getRandom' // getRandom.js
+// import * as R from './getRandom'
+
+// console.log(_.camelCase('the hello world'))
+// console.log(checkType([1,2,3]))
+// // console.log(random(), random())
+// console.log(R)
+
+
+/////////////////////////////////////////////////////////////////////
+
+
+import _ from 'lodash'
+const usersA = [
+  {userId:'1', name:'jwooni'},
+  {userId:'2', name:'Neo'}
+]
+const usersB = [
+  {userId:'1', name:'jwooni'},
+  {userId:'3', name:'Amy'}
+]
+
+const usersC = usersA.concat(usersB)
+console.log('concat', usersC)
+console.log('uniqBy', _.uniqBy(usersC, 'userId'))
+
+const usersD = _.unionBy(usersA, usersB, 'userId')
+console.log('unionBy', usersD)
+
+const users = [
+  {userId: '1', name:'Jwooni'},
+  {userId: '2', name:'Tuchel'},
+  {userId: '3', name:'Kante'},
+  {userId: '4', name:'Kovacic'},
+  {userId: '5', name:'Thiago Silva'}
+]
+
+const foundUser = _.find(users, {name:'Kante'})
+const foundUserIndex = _.findIndex(users, {name: 'Kante'})
+console.log(foundUser)
+console.log(foundUserIndex)
+
+_.remove(users, {name: 'Jwooni'})
+console.log(users)

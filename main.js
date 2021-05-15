@@ -684,35 +684,108 @@
 /////////////////////////////////////////////////////////////////////
 
 
-import _ from 'lodash'
-const usersA = [
-  {userId:'1', name:'jwooni'},
-  {userId:'2', name:'Neo'}
-]
-const usersB = [
-  {userId:'1', name:'jwooni'},
-  {userId:'3', name:'Amy'}
-]
+// import _, { compact } from 'lodash'
+// const usersA = [
+//   {userId:'1', name:'jwooni'},
+//   {userId:'2', name:'Neo'}
+// ]
+// const usersB = [
+//   {userId:'1', name:'jwooni'},
+//   {userId:'3', name:'Amy'}
+// ]
 
-const usersC = usersA.concat(usersB)
-console.log('concat', usersC)
-console.log('uniqBy', _.uniqBy(usersC, 'userId'))
+// const usersC = usersA.concat(usersB)
+// console.log('concat', usersC)
+// console.log('uniqBy', _.uniqBy(usersC, 'userId'))
 
-const usersD = _.unionBy(usersA, usersB, 'userId')
-console.log('unionBy', usersD)
+// const usersD = _.unionBy(usersA, usersB, 'userId')
+// console.log('unionBy', usersD)
 
-const users = [
-  {userId: '1', name:'Jwooni'},
-  {userId: '2', name:'Tuchel'},
-  {userId: '3', name:'Kante'},
-  {userId: '4', name:'Kovacic'},
-  {userId: '5', name:'Thiago Silva'}
-]
+// const users = [
+//   {userId: '1', name:'Jwooni'},
+//   {userId: '2', name:'Tuchel'},
+//   {userId: '3', name:'Kante'},
+//   {userId: '4', name:'Kovacic'},
+//   {userId: '5', name:'Thiago Silva'}
+// ]
 
-const foundUser = _.find(users, {name:'Kante'})
-const foundUserIndex = _.findIndex(users, {name: 'Kante'})
-console.log(foundUser)
-console.log(foundUserIndex)
+// const foundUser = _.find(users, {name:'Kante'})
+// const foundUserIndex = _.findIndex(users, {name: 'Kante'})
+// console.log(foundUser)
+// console.log(foundUserIndex)
 
-_.remove(users, {name: 'Jwooni'})
-console.log(users)
+// _.remove(users, {name: 'Jwooni'})
+// console.log(users)
+
+
+/////////////////////////////////////////////////////////////
+
+
+// JSON (JavaScript Object Notation)
+// 자바스크립트의 객체 표기법
+// import myData from './myData.json'
+// console.log(myData)
+// const user = {
+//   name: 'jwooni',
+//   age: 85,
+//   emails:[
+//     'abcd@naver.com',
+//     'abcd@gmail.com'
+//   ]
+// }
+// console.log('user', user)
+
+// const str = JSON.stringify(user)
+// console.log('str', str)
+// console.log(typeof str)
+
+// const obj = JSON.parse(str)
+// console.log('obj', obj)
+
+
+////////////////////////////////////////////////////////////////
+
+// const user = {
+//   name:'jwooni',
+//   age: 85,
+//   emails:[
+//     'qwer1234@naver.com',
+//     'abcd@gmail.com'
+//   ]
+// }
+
+// 추가
+// localStorage.setItem('user', JSON.stringify(user))
+
+// 출력
+// console.log(JSON.parse(localStorage.getItem('user')))
+
+// 삭제
+//localStorage.removeItem('user')
+
+// 수정
+// const str = localStorage.getItem('user')
+// const obj = JSON.parse(str)
+// obj.age = 22
+// console.log(obj)
+// localStorage.setItem('user', JSON.stringify(obj))
+
+
+////////////////////////////////////////////////////////////////
+
+
+import axios from 'axios'
+
+function fetchMovies() {
+  axios
+  .get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+  .then((res) =>{
+    console.log(res)
+    const h1El = document.querySelector('h1')
+    const imgEl = document.querySelector('img')
+    h1El.textContent = res.data.Search[0].Title
+    imgEl.src = res.data.Search[0].Poster
+  })
+}
+
+fetchMovies()
